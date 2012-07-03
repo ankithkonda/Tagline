@@ -12,7 +12,7 @@
 
 @interface GameTypeSelectorViewController : UIViewController
 
-
+//test
 @property (weak, nonatomic) IBOutlet UILabel *dramaLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *animationLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionLevelLabel;
