@@ -26,7 +26,7 @@
 	
     
 }
-
+//test
 @property (strong, nonatomic) NSString *imageBaseURL;
 
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
