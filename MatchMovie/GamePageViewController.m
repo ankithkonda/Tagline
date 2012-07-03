@@ -156,7 +156,7 @@
     if (old.size.width == cgMainScreenRect.size.width) {
         self.playerLevel++;
         
-        /*
+        
         
         UIColor *levelTen = [[UIColor alloc] initWithRed:137 green:0 blue:199 alpha:1];
         UIColor *levelTwenty = [[UIColor alloc] initWithRed:94 green:233 blue:255 alpha:1];
@@ -205,7 +205,7 @@
         }
         
          
-         */
+         
         [self.levelLabel setText:[NSString stringWithFormat:@"Level: %i", self.playerLevel]];
         
        [[NSUserDefaults standardUserDefaults] setInteger:self.playerLevel forKey:@"playerLevel"];
