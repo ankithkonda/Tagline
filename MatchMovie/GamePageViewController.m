@@ -306,6 +306,13 @@
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelThreeHundred percentComplete:100.00];
             
+        }else if (self.playerLevel == 400) {
+            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Very impressive! you have now reached level 400." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
+            
+            [alertReach show];
+            
+            [self.gameCenterManager submitAchievement:kAchievementID_LevelFourHundred percentComplete:100.00];
+            
         }else if (self.playerLevel == 500) {
             UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"AMAZING!! you have now reached level 500." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
             
@@ -337,7 +344,6 @@
     UIColor *wrongColor = [[UIColor alloc] initWithRed:127 green:0 blue:0 alpha:1];
 
     
-   
     
     
     NSMutableArray *imageFieldArray = [[NSMutableArray alloc] initWithObjects:self.imageAButton, self.imageBButton, self.imageCButton, self.imageDButton, self.imageEButton, self.imageFButton, nil];
@@ -364,6 +370,7 @@
         self.isHintPressed = NO;
         [self.commentLabel setTextColor:wrongColor];
         [self animateAndLoadComment:[[Comments sharedClient] getBadComment]];
+
         
         [UIView animateWithDuration:1.0 animations:^{
             
@@ -409,12 +416,15 @@
         int checkStreak = [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"];
         
         if (self.streakNum == 5) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_Streaker percentComplete:100.00];
+            
+            
             
             if (checkStreak <= 5) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"you've managed to get 5 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
                 
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streaker"];
+
+                
             }
             
             
@@ -422,72 +432,64 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
             
             if (checkStreak <= 10) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"don't stop you just got 10 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
                 
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 10"];
+
             }
             
         }else if (self.streakNum == 15) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakFifteen percentComplete:100.00];
             
             if (checkStreak <= 15) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"you amazing person you!! 15 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 15"];
+
             }
             
         }else if (self.streakNum == 20) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakTwenty percentComplete:100.00];
             
             if (checkStreak <= 20) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"don't let me slow you down... 20 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 20"];
+
             }
             
         }else if (self.streakNum == 25) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakTwentyFive percentComplete:100.00];
             
             if (checkStreak <= 25) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"O_O' ... 25 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 25"];
+
             }
             
         }else if (self.streakNum == 30) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakThirty percentComplete:100.00];
             
             if (checkStreak <= 30) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"you've managed to get 30 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 30"];
             }
             
         }else if (self.streakNum == 35) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakThirtyFive percentComplete:100.00];
             
             if (checkStreak <= 35) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"you've managed to get 35 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 35"];
+
             }
             
         }else if (self.streakNum == 40) {
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakFourty percentComplete:100.00];
             
             if (checkStreak <= 40) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"you've managed to get 40 movies correct in a row... keep going!" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak 40"];
+
             }
             
         }else if (self.streakNum >= 50){
-            [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
+            [self.gameCenterManager submitAchievement:kAchievementID_StreakKing percentComplete:100.00];
             
             if (checkStreak <= 50) {
-                UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"You shall now be known as Streak King! 50 movies correct in a row :O" delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-                
-                [alertReach show];
+                [self animateAndLoadComment:@"Achievement Unlocked: Streak King"];
+
             }
             
         }
@@ -744,7 +746,7 @@
     
     [self setUserInteractionForPoster:NO];
     
-    
+    self.streakNum = 0;
      
     
     NSLog(@"I touched the wrong image");

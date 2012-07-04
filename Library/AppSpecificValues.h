@@ -54,9 +54,9 @@
 //  iTunes Connect will accept will work fine.
 
 //Leaderboard Category IDs
-#define kLeaderboardID_Score @"com.matchmovierelease.score.leadboard"
-#define kLeaderboardID_Player @"com.matchmovierelease.playerLevel.leadboard"
-#define kLeaderboardID_Streak @"com.matchmovierelease.streak.leadboard"
+#define kLeaderboardID_Score @"ankithkonda.tagline.score.leaderboard"
+#define kLeaderboardID_Player @"ankithkonda.tagline.playerLevel.leaderboard"
+#define kLeaderboardID_Streak @"ankithkonda.tagline.streak.leaderboard"
 
 
 
@@ -65,31 +65,32 @@
 
 
 //Achievement IDs
-#define kAchievementID_LevelTen @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelTwenty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelThirty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelFourty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelFifty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelSixty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelSeventy @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelEighty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelNinty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelHundred @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelHundredAndFifty @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelTwoHundred @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelThreeHundred @"com.matchmovierelease.achievements.levelten"
-#define kAchievementID_LevelFiveHundred @"com.matchmovierelease.achievements.levelten"
+#define kAchievementID_LevelTen @"ankithkonda.tagline.achievements.level10"
+#define kAchievementID_LevelTwenty @"ankithkonda.tagline.achievements.level20"
+#define kAchievementID_LevelThirty @"ankithkonda.tagline.achievements.level30"
+#define kAchievementID_LevelFourty @"ankithkonda.tagline.achievements.level40"
+#define kAchievementID_LevelFifty @"ankithkonda.tagline.achievements.level50"
+#define kAchievementID_LevelSixty @"ankithkonda.tagline.achievements.level60"
+#define kAchievementID_LevelSeventy @"ankithkonda.tagline.achievements.level70"
+#define kAchievementID_LevelEighty @"ankithkonda.tagline.achievements.level80"
+#define kAchievementID_LevelNinty @"ankithkonda.tagline.achievements.level90"
+#define kAchievementID_LevelHundred @"ankithkonda.tagline.achievements.level100"
+#define kAchievementID_LevelHundredAndFifty @"ankithkonda.tagline.achievements.level150"
+#define kAchievementID_LevelTwoHundred @"ankithkonda.tagline.achievements.level200"
+#define kAchievementID_LevelThreeHundred @"ankithkonda.tagline.achievements.level300"
+#define kAchievementID_LevelFourHundred @"ankithkonda.tagline.achievements.level400"
+#define kAchievementID_LevelFiveHundred @"ankithkonda.tagline.achievements.level500"
 
 
-#define kAchievementID_Streaker @"com.matchmovierelease.achievements.streakFive"
-#define kAchievementID_StreakTen @"com.matchmovierelease.achievements.streakTen"
-#define kAchievementID_StreakFifteen @"com.matchmovierelease.achievements.streakFifteen"
-#define kAchievementID_StreakTwenty @"com.matchmovierelease.achievements.streakTwenty"
-#define kAchievementID_StreakTwentyFive @"com.matchmovierelease.achievements.streakTwentyFive"
-#define kAchievementID_StreakThirty @"com.matchmovierelease.achievements.streakThirty"
-#define kAchievementID_StreakThirtyFive @"com.matchmovierelease.achievements.streakThirtyFive"
-#define kAchievementID_StreakFourty @"com.matchmovierelease.achievements.streakFourty"
-#define kAchievementID_StreakKing @"com.matchmovierelease.achievements.streakKing"
+#define kAchievementID_Streaker @"ankithkonda.tagline.achievements.streak5"
+#define kAchievementID_StreakTen @"ankithkonda.tagline.achievements.streak10"
+#define kAchievementID_StreakFifteen @"ankithkonda.tagline.achievements.streak15"
+#define kAchievementID_StreakTwenty @"ankithkonda.tagline.achievements.streak20"
+#define kAchievementID_StreakTwentyFive @"ankithkonda.tagline.achievements.streak25"
+#define kAchievementID_StreakThirty @"ankithkonda.tagline.achievements.streak30"
+#define kAchievementID_StreakThirtyFive @"ankithkonda.tagline.achievements.streak35"
+#define kAchievementID_StreakFourty @"ankithkonda.tagline.achievements.streak40"
+#define kAchievementID_StreakKing @"ankithkonda.tagline.achievements.streakKing"
 
 
 //#define kAchievement_GreenHorn_ID @"com.matchmovie.achievements.greenhorn"
