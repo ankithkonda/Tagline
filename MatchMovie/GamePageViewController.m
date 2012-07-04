@@ -1439,8 +1439,9 @@
     
     
     if (self.isHintEnabled == YES) {
-        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:[self convertRGBVal:20] green:[self convertRGBVal:201] blue:[self convertRGBVal:255] alpha:1]; 
-        [self.hintButton setEnabled:YES];
+        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:0 green:0.634419 blue:0.873641 alpha:1]; 
+
+        //[self.hintButton setEnabled:YES];
         [self.hintButton setBackgroundColor:hintButtonColor];
     }
     
@@ -1658,9 +1659,14 @@
         self.playerLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"playerLevel"];
     }
     
+    
+    //0 0.634419 0.873641 
+    //0.080355 0.641273 0.853046
+    
     if (self.playerLevel >= 5 && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] >= 5) {
-        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:[self convertRGBVal:20] green:[self convertRGBVal:201] blue:[self convertRGBVal:255] alpha:1]; 
-        
+        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:0 green:0.634419 blue:0.873641 alpha:1]; 
+        NSLog(@"CURRENT COLOR: %@", self.hintButton.backgroundColor);
+
         self.isHintEnabled = YES;
         //[self.hintButton setEnabled:YES];
         [self.hintButton setBackgroundColor:hintButtonColor];

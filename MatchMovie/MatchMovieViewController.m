@@ -199,7 +199,8 @@
 
 
 - (void)loadTagline{
-
+    
+    [self.matchMovieTaglineLabel setText:@""];
     [self isLoading:YES];
     NSArray *tempAll = [[NSArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"movies"]];
     
@@ -209,7 +210,7 @@
     [[TmdbApiClient sharedClient] getMovieByID:[[tempAll objectAtIndex:randIndex] objectForKey:@"tmdb_id"] Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self isLoading:NO];
-        [matchMovieTaglineLabel setText:[NSString stringWithFormat:@"'%@' - %@", [responseObject objectForKey:@"tagline"],[responseObject objectForKey:@"original_title"]]];
+        [self.matchMovieTaglineLabel setText:[NSString stringWithFormat:@"'%@' - %@", [responseObject objectForKey:@"tagline"],[responseObject objectForKey:@"original_title"]]];
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
