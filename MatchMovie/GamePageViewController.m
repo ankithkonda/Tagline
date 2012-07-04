@@ -30,8 +30,10 @@
 @implementation GamePageViewController
 
 @synthesize isHintPressed;
+@synthesize isHintEnabled;
 @synthesize imageBaseURL;
 @synthesize commentLabel;
+@synthesize hintButton;
 
 @synthesize moviesInApp;
 @synthesize moviesInPlay;
@@ -211,112 +213,128 @@
        [[NSUserDefaults standardUserDefaults] setInteger:self.playerLevel forKey:@"playerLevel"];
         [self.gameCenterManager reportScore:self.playerLevel forCategory:kLeaderboardID_Player];
         
-        
+        UIColor *achievementColor = [[UIColor alloc] init];
+        achievementColor = [UIColor yellowColor];
         
         
         if (self.playerLevel == 10) {
             
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 10." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 10"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelTen percentComplete:100.00];
 
         }else if (self.playerLevel == 20) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 20." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 20"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelTwenty percentComplete:100.00];
 
         }else if (self.playerLevel == 30) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 30." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 30"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelThirty percentComplete:100.00];
             
         }else if (self.playerLevel == 40) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 40." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 40"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelFourty percentComplete:100.00];
             
         }else if (self.playerLevel == 50) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 50." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 50"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelFifty percentComplete:100.00];
             
         }else if (self.playerLevel == 60) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now achieved level 60." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 60"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelSixty percentComplete:100.00];
             
         }else if (self.playerLevel == 70) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 70." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 70"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelSeventy percentComplete:100.00];
             
         }else if (self.playerLevel == 80) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 80." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 80"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelEighty percentComplete:100.00];
             
         }else if (self.playerLevel == 90) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 90." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 90"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelNinty percentComplete:100.00];
             
         }else if (self.playerLevel == 100) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Well Done!! you have now reached level 100." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 100"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelHundred percentComplete:100.00];
             
         }else if (self.playerLevel == 150) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"OMG!! you have now achieved reached 150." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 150"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelHundredAndFifty percentComplete:100.00];
             
         }else if (self.playerLevel == 200) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"This is impressive!! you have now reached level 200." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 200"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelTwoHundred percentComplete:100.00];
             
         }else if (self.playerLevel == 300) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"WOW!! you have now reached level 300." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 300"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelThreeHundred percentComplete:100.00];
             
         }else if (self.playerLevel == 400) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"Very impressive! you have now reached level 400." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 400"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelFourHundred percentComplete:100.00];
             
         }else if (self.playerLevel == 500) {
-            UIAlertView *alertReach = [[UIAlertView alloc] initWithTitle:@"Achievement Unlocked" message:@"AMAZING!! you have now reached level 500." delegate:self cancelButtonTitle:@"Woohoo!!" otherButtonTitles: nil];
-            
-            [alertReach show];
+            [self.commentLabel setTextColor:achievementColor];
+
+            [self animateAndLoadComment:@"Achievement Unlocked: Reached Level 500"];
+
             
             [self.gameCenterManager submitAchievement:kAchievementID_LevelFiveHundred percentComplete:100.00];
                     
@@ -340,10 +358,24 @@
 
 - (void)pressedCorrectImage{
     
+    
     UIColor *correctColor = [[UIColor alloc] initWithRed:0 green:0.7 blue:0 alpha:1];
+    /*
     UIColor *wrongColor = [[UIColor alloc] initWithRed:127 green:0 blue:0 alpha:1];
 
+    UIColor *achievementColor = [[UIColor alloc] initWithRed:1 green:0.9 blue:0 alpha:1];
+     */
     
+    
+    //UIColor *correctColor = [[UIColor alloc] init];
+    //correctColor = [UIColor greenColor];
+    
+    UIColor *wrongColor = [[UIColor alloc] init];
+    wrongColor = [UIColor redColor];
+
+    UIColor *achievementColor = [[UIColor alloc] init];
+    achievementColor = [UIColor yellowColor];
+
     
     
     NSMutableArray *imageFieldArray = [[NSMutableArray alloc] initWithObjects:self.imageAButton, self.imageBButton, self.imageCButton, self.imageDButton, self.imageEButton, self.imageFButton, nil];
@@ -394,6 +426,8 @@
         
         [self.commentLabel setTextColor:correctColor];
         [self animateAndLoadComment:[[Comments sharedClient] getGoodComment]];
+        
+        
         [self increaseLevel];
         
         
@@ -414,14 +448,16 @@
         NSLog(@"HIGHEST STREAK: %i",[[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] );
         
         int checkStreak = [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"];
-        
+       
+
         if (self.streakNum == 5) {
             [self.gameCenterManager submitAchievement:kAchievementID_Streaker percentComplete:100.00];
             
             
             
             if (checkStreak <= 5) {
-                
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streaker"];
 
                 
@@ -432,7 +468,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakTen percentComplete:100.00];
             
             if (checkStreak <= 10) {
-                
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 10"];
 
             }
@@ -441,6 +478,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakFifteen percentComplete:100.00];
             
             if (checkStreak <= 15) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 15"];
 
             }
@@ -449,6 +488,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakTwenty percentComplete:100.00];
             
             if (checkStreak <= 20) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 20"];
 
             }
@@ -457,6 +498,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakTwentyFive percentComplete:100.00];
             
             if (checkStreak <= 25) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 25"];
 
             }
@@ -465,6 +508,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakThirty percentComplete:100.00];
             
             if (checkStreak <= 30) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 30"];
             }
             
@@ -472,6 +517,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakThirtyFive percentComplete:100.00];
             
             if (checkStreak <= 35) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 35"];
 
             }
@@ -480,6 +527,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakFourty percentComplete:100.00];
             
             if (checkStreak <= 40) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak 40"];
 
             }
@@ -488,6 +537,8 @@
             [self.gameCenterManager submitAchievement:kAchievementID_StreakKing percentComplete:100.00];
             
             if (checkStreak <= 50) {
+                [self.commentLabel setTextColor:achievementColor];
+
                 [self animateAndLoadComment:@"Achievement Unlocked: Streak King"];
 
             }
@@ -653,13 +704,13 @@
 - (void)skipPressed{
     
     self.isHintPressed = YES;
-    
-    UIColor *skippedColor = [[UIColor alloc] initWithRed:0 green:0.7 blue:0 alpha:1];
-
-    int borderWidth = 6.0;
-    int borderRad = 5;
-    
-   
+    if (self.isHintEnabled == YES) {
+        UIColor *skippedColor = [[UIColor alloc] initWithRed:0 green:0.7 blue:0 alpha:1];
+        
+        int borderWidth = 6.0;
+        int borderRad = 5;
+        
+        
         if ([self.correctImage isEqualToString:@"imageA"] ) {
             
             [[self.imageAButton layer] setBorderWidth:borderWidth];
@@ -694,6 +745,12 @@
             self.imageFButton.layer.cornerRadius = borderRad;
             
         }
+    }else {
+        UIAlertView *hintAlert = [[UIAlertView alloc] initWithTitle:@"Hint Locked" message:@"To unlock 'Hint', reach level 5 & get 5 posters correct in a row." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [hintAlert show];
+    }
+    
+    
       
 
     
@@ -1381,6 +1438,13 @@
     [self loadMovies];
     
     
+    if (self.isHintEnabled == YES) {
+        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:[self convertRGBVal:20] green:[self convertRGBVal:201] blue:[self convertRGBVal:255] alpha:1]; 
+        [self.hintButton setEnabled:YES];
+        [self.hintButton setBackgroundColor:hintButtonColor];
+    }
+    
+    
         int randomPosterLoc = arc4random() % 6;
     NSMutableArray *imageFieldArray = [[NSMutableArray alloc] initWithObjects:self.imageAButton, self.imageBButton, self.imageCButton, self.imageDButton, self.imageEButton, self.imageFButton, nil];
     //NSLog(@"MOVIES TO USE IN VIEW: %@", self.moviesToUseInView);
@@ -1579,8 +1643,9 @@
     
     
     self.moviesToUseInView = [[NSMutableArray alloc] init ];
+    
+
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"score"];
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"streak"];
     
    
     
@@ -1591,6 +1656,20 @@
         
     }else {
         self.playerLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"playerLevel"];
+    }
+    
+    if (self.playerLevel >= 5 && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] >= 5) {
+        UIColor *hintButtonColor = [[UIColor alloc] initWithRed:[self convertRGBVal:20] green:[self convertRGBVal:201] blue:[self convertRGBVal:255] alpha:1]; 
+        
+        self.isHintEnabled = YES;
+        //[self.hintButton setEnabled:YES];
+        [self.hintButton setBackgroundColor:hintButtonColor];
+        
+        
+    }else {
+        self.isHintEnabled = NO;
+        //[self.hintButton setEnabled:NO];
+        [self.hintButton setBackgroundColor:[UIColor darkGrayColor]];
     }
     
     [self.levelLabel setText:[NSString stringWithFormat:@"Level: %i",self.playerLevel]];
@@ -1736,6 +1815,7 @@
     [self setLevelLabel:nil];
     [self setQuickScoreShow:nil];
     [self setCommentLabel:nil];
+    [self setHintButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

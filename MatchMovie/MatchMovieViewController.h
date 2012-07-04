@@ -33,4 +33,6 @@
 @property (nonatomic, retain) NSString* currentLeaderBoard;
 @property (weak, nonatomic) IBOutlet UILabel *matchMovieTaglineLabel;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end

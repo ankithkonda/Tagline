@@ -31,8 +31,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *hintButton;
 @property (nonatomic) BOOL isHintPressed;
-
+@property (nonatomic) BOOL isHintEnabled;
 @property (nonatomic) int levelOfPlayerInCurrentGame;
 
 @property (nonatomic, assign) int64_t currentScore;

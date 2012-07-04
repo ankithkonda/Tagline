@@ -34,6 +34,7 @@
 @synthesize gameCenterManager;
 @synthesize currentLeaderBoard;
 @synthesize matchMovieTaglineLabel;
+@synthesize activityIndicator;
 
 
 - (IBAction)startGameButton:(id)sender {
@@ -199,7 +200,7 @@
 
 - (void)loadTagline{
 
-    
+    [self isLoading:YES];
     NSArray *tempAll = [[NSArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"movies"]];
     
     int randIndex = arc4random() % [tempAll count];
@@ -207,7 +208,7 @@
     
     [[TmdbApiClient sharedClient] getMovieByID:[[tempAll objectAtIndex:randIndex] objectForKey:@"tmdb_id"] Success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        
+        [self isLoading:NO];
         [matchMovieTaglineLabel setText:[NSString stringWithFormat:@"'%@' - %@", [responseObject objectForKey:@"tagline"],[responseObject objectForKey:@"original_title"]]];
         
         
@@ -268,7 +269,21 @@
 
 
 
-
+- (void)isLoading:(BOOL)loading{
+    
+    if(loading == YES) {
+        
+        [self.activityIndicator startAnimating];
+        [self.activityIndicator setAlpha:1.0];
+        
+    } else {
+        [self.activityIndicator stopAnimating];
+        [self.activityIndicator setAlpha:0.0];
+        
+    }
+    
+    
+}
 
 
 
@@ -280,6 +295,7 @@
     [self setPlayerProfilePicture:nil];
     [self setMatchMovieTaglineLabel:nil];
     [self setStartGameButton:nil];
+    [self setActivityIndicator:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
