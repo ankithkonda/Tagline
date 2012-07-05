@@ -30,12 +30,12 @@
     [commentsArray addObject:@"You go guy/girl!"];
     [commentsArray addObject:@"You deserve a medal!"];
     [commentsArray addObject:@"Great Scott!! you go it right."];
-    [commentsArray addObject:@"Woah, you're on a roll, i think"];
-    [commentsArray addObject:@"Okay i think you're awesome"];
+    [commentsArray addObject:@"Woah, you're on a roll, I think"];
+    [commentsArray addObject:@"Okay, I think you're awesome"];
     [commentsArray addObject:@"Good job!"];
     [commentsArray addObject:@"Excellent!"];
     [commentsArray addObject:@"Booya!"];
-    [commentsArray addObject:@"phew! i though you were going to get that wrong!"];
+    [commentsArray addObject:@"Phew! I thought you were going to get that wrong!"];
     
     
     int randIndex = arc4random() % [commentsArray count];
@@ -50,16 +50,17 @@
     
     [commentsArray addObject:@"c'mon you can do better!"];
     [commentsArray addObject:@"I thought you were my hero!"];
-    [commentsArray addObject:@"you need to stop failing"];
+    [commentsArray addObject:@"You need to stop failing"];
     [commentsArray addObject:@"Advice: stop getting it wrong!"];
-    [commentsArray addObject:@"Not-So-Great Scott!! ."];
-    [commentsArray addObject:@"What is this, a round for losers?"];
+    [commentsArray addObject:@"Not-So-Great Scott!!"];
+    [commentsArray addObject:@"What is this? a round for losers?"];
     [commentsArray addObject:@"Okay stop, think first!"];
-    [commentsArray addObject:@"Bad.. very Bad"];
+    [commentsArray addObject:@"Bad... very Bad"];
     [commentsArray addObject:@"I vote you off the island"];
-    [commentsArray addObject:@"Can someone get this guy some movies?"];
+    [commentsArray addObject:@"You need to start watching more movies?"];
     [commentsArray addObject:@"I knew you were not smart enough to get that right"];
     [commentsArray addObject:@"Even my cat is smart enough for this!"];
+    [commentsArray addObject:@"Oh... do you hear that? It's the sound of you getting it wrong"];
     [commentsArray addObject:@"No offence, but you're really bad at this"];
 
 

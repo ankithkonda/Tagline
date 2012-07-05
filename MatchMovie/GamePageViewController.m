@@ -160,50 +160,47 @@
         
         
         
-        UIColor *levelTen = [[UIColor alloc] initWithRed:137 green:0 blue:199 alpha:1];
-        UIColor *levelTwenty = [[UIColor alloc] initWithRed:94 green:233 blue:255 alpha:1];
-        UIColor *levelThirty = [[UIColor alloc] initWithRed:255 green:235 blue:69 alpha:1];
-        UIColor *LevelFourty = [[UIColor alloc] initWithRed:204 green:34 blue:115 alpha:1];
-        UIColor *LevelFifty = [[UIColor alloc] initWithRed:102 green:178 blue:30 alpha:1];
-        UIColor *LevelSixty = [[UIColor alloc] initWithRed:204 green:67 blue:25 alpha:1];
-        UIColor *LevelSeventy = [[UIColor alloc] initWithRed:159 green:255 blue:69 alpha:1];
-        UIColor *LevelEighty = [[UIColor alloc] initWithRed:137 green:25 blue:255 alpha:1];
-        UIColor *LevelNinty = [[UIColor alloc] initWithRed:255 green:0 blue:199 alpha:1];
-        UIColor *LevelHundred = [[UIColor alloc] initWithRed:0 green:255 blue:248 alpha:1];
-        UIColor *LevelHundredAndTen = [[UIColor alloc] initWithRed:255 green:121 blue:0 alpha:1];
-        UIColor *LevelHundredAndTwenty = [[UIColor alloc] initWithRed:204 green:67 blue:255 alpha:1];
-        UIColor *LevelHundredAndThirty = [[UIColor alloc] initWithRed:94 green:34 blue:0 alpha:1];
-        UIColor *LevelHundredAndFourty = [[UIColor alloc] initWithRed:137 green:25 blue:255 alpha:1];
+        UIColor *level10 = [UIColor colorWithRed:0.515 green:0.271 blue:0.874 alpha:1.000];
+        UIColor *level20 = [UIColor colorWithRed:0.631 green:0.264 blue:0.000 alpha:1.000];
+        UIColor *level30 = [UIColor colorWithRed:0.914 green:0.770 blue:0.000 alpha:1.000];
+        UIColor *level40 = [UIColor colorWithRed:0.076 green:0.770 blue:0.000 alpha:1.000];
+        UIColor *level50 = [UIColor colorWithRed:0.737 green:0.322 blue:0.453 alpha:1.000];
+        UIColor *level60 = [UIColor colorWithRed:0.000 green:0.322 blue:0.453 alpha:1.000];
+        UIColor *level70 = [UIColor colorWithRed:1.000 green:0.009 blue:0.453 alpha:1.000];
+        UIColor *level80 = [UIColor colorWithRed:0.278 green:0.009 blue:0.453 alpha:1.000];
+        UIColor *level90 = [UIColor colorWithRed:1.000 green:0.258 blue:0.000 alpha:1.000];
+        UIColor *level100 = [UIColor colorWithRed:0.283 green:0.587 blue:0.521 alpha:1.000];
         
         
         if (self.playerLevel >= 10 && self.playerLevel < 20) {
-            [self.levelButton setBackgroundColor:levelTen];
+            
+            [self.levelButton setBackgroundColor:level10];
         }else if (self.playerLevel >= 20 && self.playerLevel < 30) {
-            [self.levelButton setBackgroundColor:levelTwenty];
+            [self.levelButton setBackgroundColor:level20];
         }else if (self.playerLevel >= 30 && self.playerLevel < 40) {
-            [self.levelButton setBackgroundColor:levelThirty];
+            [self.levelButton setBackgroundColor:level30];
         }else if (self.playerLevel >= 40 && self.playerLevel < 50) {
-            [self.levelButton setBackgroundColor:LevelFourty];
+            [self.levelButton setBackgroundColor:level40];
         }else if (self.playerLevel >= 50 && self.playerLevel < 60) {
-            [self.levelButton setBackgroundColor:LevelFifty];
+            [self.levelButton setBackgroundColor:level50];
         }else if (self.playerLevel >= 60 && self.playerLevel < 70) {
-            [self.levelButton setBackgroundColor:LevelSixty];
+            [self.levelButton setBackgroundColor:level60];
         }else if (self.playerLevel >= 70 && self.playerLevel < 80) {
-            [self.levelButton setBackgroundColor:LevelSeventy];
+            [self.levelButton setBackgroundColor:level70];
         }else if (self.playerLevel >= 80 && self.playerLevel < 90) {
-            [self.levelButton setBackgroundColor:LevelEighty];
+            [self.levelButton setBackgroundColor:level80];
         }else if (self.playerLevel >= 90 && self.playerLevel < 100) {
-            [self.levelButton setBackgroundColor:LevelNinty];
+            [self.levelButton setBackgroundColor:level90];
         }else if (self.playerLevel >= 100 && self.playerLevel < 110) {
-            [self.levelButton setBackgroundColor:LevelHundred];
+            [self.levelButton setBackgroundColor:level100];
         }else if (self.playerLevel >= 110 && self.playerLevel < 120) {
-            [self.levelButton setBackgroundColor:LevelHundredAndTen];
+            [self.levelButton setBackgroundColor:level10];
         }else if (self.playerLevel >= 120 && self.playerLevel < 130) {
-            [self.levelButton setBackgroundColor:LevelHundredAndTwenty];
+            [self.levelButton setBackgroundColor:level20];
         }else if (self.playerLevel >= 130 && self.playerLevel < 140) {
-            [self.levelButton setBackgroundColor:LevelHundredAndThirty];
+            [self.levelButton setBackgroundColor:level30];
         }else if (self.playerLevel >= 140 && self.playerLevel < 150) {
-            [self.levelButton setBackgroundColor:LevelHundredAndFourty];
+            [self.levelButton setBackgroundColor:level60];
         }
         
          
@@ -1437,6 +1434,9 @@
     }
     [self loadMovies];
     
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] >= 5 && self.playerLevel >= 5) {
+        self.isHintEnabled = YES;
+    }
     
     if (self.isHintEnabled == YES) {
         UIColor *hintButtonColor = [[UIColor alloc] initWithRed:0 green:0.634419 blue:0.873641 alpha:1]; 
@@ -1681,58 +1681,56 @@
     [self.levelLabel setText:[NSString stringWithFormat:@"Level: %i",self.playerLevel]];
 
     
-    /*
-    UIColor *levelTen = [[UIColor alloc] initWithRed:137 green:0 blue:199 alpha:1];
-    UIColor *levelTwenty = [[UIColor alloc] initWithRed:[self convertRGBVal:94] green:[self convertRGBVal:233] blue:[self convertRGBVal:255] alpha:1];
-    UIColor *levelThirty = [[UIColor alloc] initWithRed:1.0 green:0.92 blue:0.27 alpha:1];
-    UIColor *LevelFourty = [[UIColor alloc] initWithRed:204 green:34 blue:115 alpha:1];
-    UIColor *LevelFifty = [[UIColor alloc] initWithRed:102 green:178 blue:30 alpha:1];
-    UIColor *LevelSixty = [[UIColor alloc] initWithRed:204 green:67 blue:25 alpha:1];
-    UIColor *LevelSeventy = [[UIColor alloc] initWithRed:159 green:255 blue:69 alpha:1];
-    UIColor *LevelEighty = [[UIColor alloc] initWithRed:137 green:25 blue:255 alpha:1];
-    UIColor *LevelNinty = [[UIColor alloc] initWithRed:255 green:0 blue:199 alpha:1];
-    UIColor *LevelHundred = [[UIColor alloc] initWithRed:0 green:255 blue:248 alpha:1];
-    UIColor *LevelHundredAndTen = [[UIColor alloc] initWithRed:255 green:121 blue:0 alpha:1];
-    UIColor *LevelHundredAndTwenty = [[UIColor alloc] initWithRed:204 green:67 blue:255 alpha:1];
-    UIColor *LevelHundredAndThirty = [[UIColor alloc] initWithRed:106 green:53 blue:16 alpha:1];
-    UIColor *LevelHundredAndFourty = [[UIColor alloc] initWithRed:137 green:25 blue:255 alpha:1];
     
-    [self.levelLabel setText:[NSString stringWithFormat:@"Level: %i",self.playerLevel]];
+    UIColor *level10 = [UIColor colorWithRed:0.515 green:0.271 blue:0.874 alpha:1.000];
+    UIColor *level20 = [UIColor colorWithRed:0.631 green:0.264 blue:0.000 alpha:1.000];
+    UIColor *level30 = [UIColor colorWithRed:0.914 green:0.770 blue:0.000 alpha:1.000];
+    UIColor *level40 = [UIColor colorWithRed:0.076 green:0.770 blue:0.000 alpha:1.000];
+    UIColor *level50 = [UIColor colorWithRed:0.737 green:0.322 blue:0.453 alpha:1.000];
+    UIColor *level60 = [UIColor colorWithRed:0.000 green:0.322 blue:0.453 alpha:1.000];
+    UIColor *level70 = [UIColor colorWithRed:1.000 green:0.009 blue:0.453 alpha:1.000];
+    UIColor *level80 = [UIColor colorWithRed:0.278 green:0.009 blue:0.453 alpha:1.000];
+    UIColor *level90 = [UIColor colorWithRed:1.000 green:0.258 blue:0.000 alpha:1.000];
+    UIColor *level100 = [UIColor colorWithRed:0.283 green:0.587 blue:0.521 alpha:1.000];
+    
+    
+   
     
     
     if (self.playerLevel >= 10 && self.playerLevel < 20) {
-        [self.levelButton setBackgroundColor:levelTen];
+
+        [self.levelButton setBackgroundColor:level10];
     }else if (self.playerLevel >= 20 && self.playerLevel < 30) {
-        [self.levelButton setBackgroundColor:levelTwenty];
+        [self.levelButton setBackgroundColor:level20];
     }else if (self.playerLevel >= 30 && self.playerLevel < 40) {
-        [self.levelButton setBackgroundColor:levelTwenty];
+        [self.levelButton setBackgroundColor:level30];
     }else if (self.playerLevel >= 40 && self.playerLevel < 50) {
-        [self.levelButton setBackgroundColor:LevelFourty];
+        [self.levelButton setBackgroundColor:level40];
     }else if (self.playerLevel >= 50 && self.playerLevel < 60) {
-        [self.levelButton setBackgroundColor:LevelFifty];
+        [self.levelButton setBackgroundColor:level50];
     }else if (self.playerLevel >= 60 && self.playerLevel < 70) {
-        [self.levelButton setBackgroundColor:LevelSixty];
+        [self.levelButton setBackgroundColor:level60];
     }else if (self.playerLevel >= 70 && self.playerLevel < 80) {
-        [self.levelButton setBackgroundColor:LevelSeventy];
+        [self.levelButton setBackgroundColor:level70];
     }else if (self.playerLevel >= 80 && self.playerLevel < 90) {
-        [self.levelButton setBackgroundColor:LevelEighty];
+        [self.levelButton setBackgroundColor:level80];
     }else if (self.playerLevel >= 90 && self.playerLevel < 100) {
-        [self.levelButton setBackgroundColor:LevelNinty];
+        [self.levelButton setBackgroundColor:level90];
     }else if (self.playerLevel >= 100 && self.playerLevel < 110) {
-        [self.levelButton setBackgroundColor:LevelHundred];
+        [self.levelButton setBackgroundColor:level100];
     }else if (self.playerLevel >= 110 && self.playerLevel < 120) {
-        [self.levelButton setBackgroundColor:LevelHundredAndTen];
+        [self.levelButton setBackgroundColor:level10];
     }else if (self.playerLevel >= 120 && self.playerLevel < 130) {
-        [self.levelButton setBackgroundColor:LevelHundredAndTwenty];
+        [self.levelButton setBackgroundColor:level20];
     }else if (self.playerLevel >= 130 && self.playerLevel < 140) {
-        [self.levelButton setBackgroundColor:LevelHundredAndThirty];
+        [self.levelButton setBackgroundColor:level30];
     }else if (self.playerLevel >= 140 && self.playerLevel < 150) {
-        [self.levelButton setBackgroundColor:LevelHundredAndFourty];
+        [self.levelButton setBackgroundColor:level60];
     }
     
     
     
-        */
+        
    // [self.PauseMenuV setHidden:YES];
     
     self.currentScore = 0;
