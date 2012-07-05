@@ -53,22 +53,13 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *quickScoreShow;
 
-@property (strong, nonatomic) IBOutlet UILabel *streakReductionLabel;
 
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldA;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldB;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldC;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldD;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldE;
-@property (strong, nonatomic) IBOutlet UIImageView *imageFieldF;
-@property (strong, nonatomic) IBOutlet UILabel *loadingLabelTest;
-@property (strong, nonatomic) IBOutlet UILabel *roundNumberLabelTest;
-@property (strong, nonatomic) IBOutlet UILabel *resultCommentTest;
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
-@property (strong, nonatomic) IBOutlet UILabel *correctLabel;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *imageAButton;
 

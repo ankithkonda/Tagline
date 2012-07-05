@@ -23,7 +23,7 @@
 {
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"movies"] == nil) {
-        NSLog(@"YES");
+        
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"filteredMovies" ofType:@"json"];
         
         //création d'un string avec le contenu du JSON

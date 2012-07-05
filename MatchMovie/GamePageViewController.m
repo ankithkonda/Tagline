@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #import "Movie.h"
 #import "SimilarMovies.h"
-#import "PauseMenu.h"
 #import "Genre.h"
 #import "Reachability.h"
 #import "Comments.h"
@@ -53,20 +52,9 @@
 @synthesize numberOfRun;
 @synthesize imageArray;
 @synthesize quickScoreShow;
-@synthesize streakReductionLabel;
 @synthesize backgroundImage;
 @synthesize backButton;
-@synthesize imageFieldA;
-@synthesize imageFieldB;
-@synthesize imageFieldC;
-@synthesize imageFieldD;
-@synthesize imageFieldE;
-@synthesize imageFieldF;
-@synthesize loadingLabelTest;
-@synthesize roundNumberLabelTest;
-@synthesize resultCommentTest;
 @synthesize activity;
-@synthesize correctLabel;
 @synthesize imageAButton;
 @synthesize imageBButton;
 @synthesize imageCButton;
@@ -141,8 +129,7 @@
     self.levelButton.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     CGRect cgMainScreenRect =[[UIScreen mainScreen] bounds];
-    NSLog(@"FRAME :%f", cgMainScreenRect.size.width);
-    // Animate
+ 
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2];
     CGRect old = self.levelButton.frame;
@@ -204,7 +191,7 @@
         }
         
          
-         //
+         
         [self.levelLabel setText:[NSString stringWithFormat:@"Level: %i", self.playerLevel]];
         
        [[NSUserDefaults standardUserDefaults] setInteger:self.playerLevel forKey:@"playerLevel"];
@@ -433,8 +420,6 @@
         
         self.wrongStreakNum = 0;
         self.streakNum++;
-        [self.streakReductionLabel setText:[NSString stringWithFormat:@"Streak: %d",  self.streakNum]];
-        
         
         if ([[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] == 0  || self.streakNum > [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"]) {
             
@@ -442,7 +427,6 @@
             [self.gameCenterManager reportScore:self.streakNum forCategory:kLeaderboardID_Streak];
             
         }
-        NSLog(@"HIGHEST STREAK: %i",[[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] );
         
         int checkStreak = [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"];
        
@@ -590,10 +574,10 @@
                         
                     } completion:^(BOOL finished) {
                         [self updateScoreInView:scoreInThisRound Success:^{
-                            NSLog(@"UPDATED THE SCORE SUCCESSFULLY");
+                            
                             [self startRound];
                         } failure:^{
-                            NSLog(@"AW Snap!");
+                            
                         }];
                         
                         [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(resetColor) userInfo:nil repeats:NO];
@@ -604,10 +588,8 @@
                 
             }else {
                 [self updateScoreInView:scoreInThisRound Success:^{
-                    NSLog(@"UPDATED THE SCORE SUCCESSFULLY");
                     [self startRound];
                 } failure:^{
-                    NSLog(@"AW Snap!");
                 }];
                 
                 [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(resetColor) userInfo:nil repeats:NO];
@@ -651,13 +633,14 @@
         interval = 0.005;
     }else if (scoreInTheCurrentRound >= 201 && scoreInTheCurrentRound <= 400) {
         interval = 0.002;
-    }else if (scoreInTheCurrentRound >= 401 && scoreInTheCurrentRound <= 800) {
+    }else if (scoreInTheCurrentRound >= 401 && scoreInTheCurrentRound <= 600) {
         interval = 0.001;
-    }else if (scoreInTheCurrentRound >= 1000 ) {
+    }else if (scoreInTheCurrentRound >= 601 && scoreInTheCurrentRound <= 1000) {
+        interval = 0.0003;
+    }else if (scoreInTheCurrentRound >= 1001 ) {
         interval = 0.0001;
     }
     
-    NSLog(@"interval: %f",interval);
     
     
     
@@ -673,7 +656,6 @@
     int scoreToCheck = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
     
     if ( scoreToCheck == [self.scoreLabel.text intValue]) {
-        NSLog(@"WOOOOOOOHOOOOO");
         success();
     }else {
         failure();
@@ -700,19 +682,21 @@
 
 - (void)skipPressed{
     
-    self.isHintPressed = YES;
+    
     if (self.isHintEnabled == YES) {
+        self.isHintPressed = YES;
+        
+        int borderWidth = 8.0;
+        int borderRad = 1;
         UIColor *skippedColor = [[UIColor alloc] initWithRed:0 green:0.7 blue:0 alpha:1];
-        
-        int borderWidth = 6.0;
-        int borderRad = 5;
-        
+
         
         if ([self.correctImage isEqualToString:@"imageA"] ) {
             
             [[self.imageAButton layer] setBorderWidth:borderWidth];
             self.imageAButton.layer.borderColor = skippedColor.CGColor;
             self.imageAButton.layer.cornerRadius = borderRad;
+            
             
             
             
@@ -742,48 +726,25 @@
             self.imageFButton.layer.cornerRadius = borderRad;
             
         }
-    }else {
-        UIAlertView *hintAlert = [[UIAlertView alloc] initWithTitle:@"Hint Locked" message:@"To unlock 'Hint', reach level 5 & get 5 posters correct in a row." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    }else if (self.playerLevel < 5  && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] < 5) {
+        UIAlertView *hintAlert = [[UIAlertView alloc] initWithTitle:@"Cheat Locked" message:@"To unlock 'Cheat', reach level 5 & get 5 posters correct in a row." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [hintAlert show];
+    }else if (self.playerLevel < 5 || [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] < 5) {
+        if (self.playerLevel < 5 && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] >= 5) {
+            UIAlertView *hintAlert = [[UIAlertView alloc] initWithTitle:@"Hint Locked" message:@"To unlock 'Cheat', you still need to reach level 5" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [hintAlert show];
+        }else if (self.playerLevel >= 5 && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] < 5) {
+            UIAlertView *hintAlert = [[UIAlertView alloc] initWithTitle:@"Hint Locked" message:@"To unlock 'Cheat', you still need to get 5 posters correct in a row." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [hintAlert show];
+        }
     }
+    
+    
     
     
       
 
     
-    /*
-    
-    for (UIButton *button in imageFieldArray) {
-        
-        [button setImage:nil forState:UIControlStateNormal];
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:button cache:YES];
-        [UIView commitAnimations];
-    }
-    [self.taglineTextbox setText:@""];
-    [self setUserInteractionForPoster:NO];
-    [self isLoading:YES];
-    
-
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.quickScoreShow setAlpha:1.0];
-        self.quickScoreShow.layer.cornerRadius = 10;
-        [self.quickScoreShow setBackgroundColor:skippedColor];
-        
-        [self.quickScoreShow setText:@"Skipped"];
-        
-        
-        
-    } completion:^(BOOL finished) {
-        
-        [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(resetColor) userInfo:nil repeats:NO];
-
-                [self startRound];
-           
-        
-    }];
-*/
     
 
 }
@@ -803,7 +764,6 @@
     self.streakNum = 0;
      
     
-    NSLog(@"I touched the wrong image");
     self.currentScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
      self.currentScore -= INCORRECT_SCORE;
     
@@ -853,39 +813,11 @@
     
     
     
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(hideLabel) userInfo:nil repeats:NO];
-
-    
-    
-    
      
    
 }
 
-- (void)showStreakReduction:(int) currentStreak
-                    Success:(void (^)(void))success
-                    failure:(void (^)(void))failure{
-    
-    //double interval = 0.01;
-    
-    
-    
-    int currentStreakPlus = currentStreak+1;
-    
-   // [self.streakReductionLabel setText:[NSString stringWithFormat:@"Streak fail: %d", currentStreak]];
-    
-    
-    for (int i = 0; i < currentStreakPlus; i++) {
-        [self.streakReductionLabel setText:[NSString stringWithFormat:@"Streak fail: %d",  currentStreak--]];
-        
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.3]];
-    }
-    
-    
-    success();
-    
-    
-}
+
 
 
 
@@ -896,11 +828,7 @@
     } ];
     
 }
--(void)hideLabel{
 
-    [self.resultCommentTest setHidden:YES];
-
-}
 - (IBAction)imageAButton:(UIButton *)sender {
     
     if ([self.correctImage isEqualToString:@"imageA"]) {
@@ -1004,52 +932,9 @@
     
 }
 
-/*
-- (void)isLoading:(BOOL)loading {
-    if(loading) {
-        [activity startAnimating];
-        [activity setAlpha:1.0];
-    } else {
-        [activity stopAnimating];
-        [activity setAlpha:0.0];
-    }
-}
- */
 
 
 
-
-
--(void)startScoreSystem{
-
-    
-    //get current score from facebook 
-    //set it as the score
-    
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"score"]) {
-        NSLog(@"NO SCORE YET");
-    }
-    
-    
-    
-    
- 
-}
-
-- (void)clearImages{
-    
-    
-    self.imageFieldA.image = nil;
-    self.imageFieldB.image = nil;
-    self.imageFieldC.image = nil;
-    self.imageFieldD.image = nil;
-    self.imageFieldE.image = nil;
-    self.imageFieldF.image = nil;
-    [self.taglineTextbox setText:@""];
-    
-    
-    
-}
 
 -(void)reachabilityChanged:(NSNotification*)note
 {
@@ -1059,14 +944,12 @@
     if([reach isReachable])
     {
         
-        
-        NSLog(@"________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________STILL CONNECTED!!__________________________________________________________________________________________________________________________________________________________________________________________________________________");
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
     else
     {
         
-        NSLog(@"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOST CONNECTION!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        
         [self backPressed];
         [reach stopNotifier];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -1088,7 +971,6 @@
     Reachability * reach = [Reachability reachabilityWithHostname:@"www.google.com"];
   
     
-    NSLog(@"REACHABILITY STATUS: %i",[reach currentReachabilityStatus]);
     
     if ([reach currentReachabilityStatus] == 1 || [reach currentReachabilityStatus] == 0) {
         self.imageBaseURL = IMAGE_URL_PATH_LOW_QUALITY;
@@ -1111,7 +993,6 @@
             
             
             if ([movie.tagLine length] == 0) {
-                NSLog(@"TAGLINE LENGTH IS 0");
                 [self loadMovies];
                 return;
             }
@@ -1119,19 +1000,12 @@
             
             numberOfRun++;
             
-            NSLog(@"NUMBER OF RUN: %d", numberOfRun);
-            
-            NSLog(@"Movie ID: %@", movie.movieID);
-            NSLog(@"Movie Name: %@", movie.movieName);
-            NSLog(@"Movie TagLine: %@", movie.tagLine);
-            NSLog(@"Movie Poster Path: %@", movie.posterPath);
 
             
             NSMutableArray *similarPosters = [[NSMutableArray alloc] init ];
             NSMutableArray *similarPostersURLS = [[NSMutableArray alloc] init];
             
             for (NSString *similarPoster in similarMovies) {
-                //NSLog(@"Similar Movies: %@", similarPoster);
                 
                 UIImageView *tempHolder = [[UIImageView alloc] init ];
                 
@@ -1149,8 +1023,6 @@
                     if (similarPosters.count == 5) {
                         
                         UIImageView *tempHolderCorrectImage = [[UIImageView alloc] init ];
-                        
-                        //NSString *URLToCorrectImage = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL_PATH,movie.posterPath]];
                         
                         
                         
@@ -1173,39 +1045,26 @@
                             
                             
                             [self.moviesToUseInView addObject:round];
-                            NSLog(@"%@", round);
-                            NSLog(@"%d", self.isFirstRound);
-                            //  NSLog(@"MOVIES TO USE IN VIEW IN LOAD MOVIES: %@", self.moviesToUseInView);
-                            
+                          
                             
                             [self setMoviesIntoUserDefaultsWithArray:self.moviesToUseInView Success:^{
                                 if ([[NSUserDefaults standardUserDefaults] objectForKey:@"amIInTheView"] == @"NO") {
                                     return;
                                 }
-                                NSLog(@"All good bro... user defaults has some movies for next time!");
                                 
                                 
                             } failure:^{
                                 if ([[NSUserDefaults standardUserDefaults] objectForKey:@"amIInTheView"] == @"NO") {
                                     return;
                                 }
-                                NSLog(@"Awhh Shit... user defaults didn't get the message homie!");
                             }];
                             
                             
                             if (self.isFirstRound == 0) {
-                                //NSLog(@"%@", isFirstRound);
                                 if ([self.moviesToUseInView count] < 1) {
                                     [self loadMovies];
                                 }else {
-                                    //self.isFirstRound = 1;
-                                    //NSLog(@"%d", isFirstRound);
                                     
-                                    
-                                    
-                                    
-                                    
-                                    //[self loadMovies];
                                     [self startRound];
                                     return;
                                 }
@@ -1219,7 +1078,6 @@
                                 return;
                             }
                             
-                            NSLog(@"ERROR AT GAME PAGE VIEW CONTROLLER IN THE LOAD MOVIES METHOD. It failed because it couldn't set an image to the temp image holder for correct image: %@", error);
                             [self loadMovies];
                             return;
                             
@@ -1236,7 +1094,7 @@
                     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"amIInTheView"] == @"NO") {
                         return;
                     }
-                    NSLog(@"ERROR AT GAME PAGE VIEW CONTROLLER IN THE LOAD MOVIES METHOD. It failed because it couldn't set an image to the temp image holder for similar images: %@", error);
+                    
                     [self loadMovies];
                     return;
                     
@@ -1253,7 +1111,7 @@
             if ([[NSUserDefaults standardUserDefaults] objectForKey:@"amIInTheView"] == @"NO") {
                 return;
             }
-            NSLog(@"ERROR AT GAME PAGE VIEW CONTROLLER IN THE LOAD MOVIES METHOD, The failure occured when using GetSimilarMovies method in the SimilarMovie class, this was called within the getRandMovieAtYear method: %@", error);
+            
             [self loadMovies];
             return;
         }];
@@ -1265,7 +1123,7 @@
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"amIInTheView"] == @"NO") {
             return;
         }
-        NSLog(@"ERROR AT GAME PAGE VIEW CONTROLLER IN THE LOAD MOVIES METHOD, The failure occured when using getRandMovieAtYear method in the Movie class: %@", error);
+     
         [self loadMovies];
         return;
     }];
@@ -1288,38 +1146,7 @@
     [self loadRandMovie: [movie objectForKey:@"tmdb_id"]];
     
     
-    /*
-    
-    if (self.currentGenreInPlay == @"All") {
-        
-        int arrayLength = [self.moviesInPlay count];
-        
-        int randomMovieInAppIndex = arc4random() % arrayLength;
-       
-        NSDictionary *movie = [[NSDictionary alloc] initWithDictionary:[self.moviesInApp objectAtIndex:randomMovieInAppIndex]];
-        
-        [self loadRandMovie: [movie objectForKey:@"tmdb_id"]];
-        
-        
-    }else {
-        
-        int arrayLength = [self.moviesInPlay count];
-        
-        if (arrayLength == 0) {
-            NSLog(@"you're done!!");
-            return;
-        }
-        
-        int randomMovieInAppIndex = arc4random() % arrayLength;
-        
-        NSDictionary *movie = [[NSDictionary alloc] initWithDictionary:[self.moviesInPlay objectAtIndex:randomMovieInAppIndex]];
-        
-        [self loadRandMovie: [movie objectForKey:@"tmdb_id"]];
-        [self.moviesInPlay removeObjectAtIndex:randomMovieInAppIndex];
-        
-    }
-    */
-    
+
 
 }
 
@@ -1338,7 +1165,6 @@
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:roundToUseForNextGame];
         
         
-        // NSLog(@"ROUND TO USE: %@", roundToUseForNextGame);
         
         
         NSData *imgData = [[NSData alloc] init];
@@ -1358,10 +1184,9 @@
         
         [tempDic setObject:imgData forKey:@"correctImgData"];
         [tempDic setObject:similarsDataArray forKey:@"similarImgData"];
-        //NSLog(@"TEMP DICT: %@", tempDic);
+   
         [moviesForNextRound addObject:tempDic];
-        //NSLog(@"DICT BEFORE PROCESSING: %@", roundToUseForNextGame);
-        //NSLog(@"DICT AFTER PROCESSING: %@", tempDic);
+ 
         [tempDic removeObjectForKey:@"correctPoster"];
         [tempDic removeObjectForKey:@"similarPosters"];
     }
@@ -1377,8 +1202,7 @@
         failure();
     }
     
-    //NSLog(@"MOVIES FOR NEXT ROUND: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"moviesToLoadOnLaunch"]);
-
+   
 
 
 
@@ -1421,13 +1245,7 @@
 }
 
 -(void)startRound{
-    /*
-    [round setObject:movie.tagLine forKey:@"tagline"];
-    [round setObject:movie.posterPath forKey:@"correctPosterPath"];
-    [round setObject:similarMovies forKey:@"similars"];
-     */
     
-   // [self hideComment];
     
     if (self.isFirstRound == 0) {
         self.isFirstRound = 1;
@@ -1441,16 +1259,14 @@
     if (self.isHintEnabled == YES) {
         UIColor *hintButtonColor = [[UIColor alloc] initWithRed:0 green:0.634419 blue:0.873641 alpha:1]; 
 
-        //[self.hintButton setEnabled:YES];
+    
         [self.hintButton setBackgroundColor:hintButtonColor];
     }
     
     
         int randomPosterLoc = arc4random() % 6;
     NSMutableArray *imageFieldArray = [[NSMutableArray alloc] initWithObjects:self.imageAButton, self.imageBButton, self.imageCButton, self.imageDButton, self.imageEButton, self.imageFButton, nil];
-    //NSLog(@"MOVIES TO USE IN VIEW: %@", self.moviesToUseInView);
-    
-    
+
     
    
     
@@ -1463,7 +1279,6 @@
         
         [self animateAndLoadTagline:[movieToUseInRound objectForKey:@"tagline"]];
         
-        NSLog(@"_______________________IMAGE FIELD ARRAY_________________:%@", imageFieldArray);
         
         [(UIButton *)[imageFieldArray objectAtIndex:randomPosterLoc]  setImage:[movieToUseInRound objectForKey:@"correctPoster"] forState:UIControlStateNormal];
         
@@ -1472,7 +1287,6 @@
         [UIView setAnimationDuration:0.5];
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:[[imageFieldArray objectAtIndex:randomPosterLoc] imageView] cache:YES];
         [UIView commitAnimations];
-        //[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 
         if ([imageFieldArray objectAtIndex:randomPosterLoc] == self.imageAButton) {
             self.correctImage = @"imageA";
@@ -1490,8 +1304,7 @@
         
         NSArray *similarPosters = [[NSArray alloc] initWithArray:[movieToUseInRound objectForKey:@"similarPosters"]];
         
-        NSLog(@"CORRECT IMAGE: %@", self.correctImage);
-        NSLog(@"IMAGE FIELD ARRAY: %@", similarPosters);
+     
         
         [imageFieldArray removeObjectAtIndex:randomPosterLoc];
         
@@ -1505,7 +1318,6 @@
             [UIView setAnimationDuration:0.5];
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:[[imageFieldArray objectAtIndex:randomSimilarPosterLoc] imageView] cache:YES];
             [UIView commitAnimations];
-            //[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             
             
             
@@ -1587,11 +1399,7 @@
             [similarPosterImages addObject:similarImg];
             
         }
-        
-        //[roundFromDefaults removeObjectForKey:@"correctImgData"];
-        //[roundFromDefaults removeObjectForKey:@"similarImgData"];
-        
-        NSLog(@"CORRECT IMAGE: %@", correctImg);
+  
         
         [roundFromDefaultsToUse setObject:correctImg forKey:@"correctPoster"];
         [roundFromDefaultsToUse setObject:similarPosterImages forKey:@"similarPosters"];
@@ -1636,10 +1444,6 @@
     
     
     
-    [self startScoreSystem];
-    
-
-    
    
     
     
@@ -1659,22 +1463,17 @@
         self.playerLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"playerLevel"];
     }
     
-    
-    //0 0.634419 0.873641 
-    //0.080355 0.641273 0.853046
+   
     
     if (self.playerLevel >= 5 && [[NSUserDefaults standardUserDefaults] integerForKey:@"streak"] >= 5) {
         UIColor *hintButtonColor = [[UIColor alloc] initWithRed:0 green:0.634419 blue:0.873641 alpha:1]; 
-        NSLog(@"CURRENT COLOR: %@", self.hintButton.backgroundColor);
 
         self.isHintEnabled = YES;
-        //[self.hintButton setEnabled:YES];
         [self.hintButton setBackgroundColor:hintButtonColor];
         
         
     }else {
         self.isHintEnabled = NO;
-        //[self.hintButton setEnabled:NO];
         [self.hintButton setBackgroundColor:[UIColor darkGrayColor]];
     }
     
@@ -1731,7 +1530,6 @@
     
     
         
-   // [self.PauseMenuV setHidden:YES];
     
     self.currentScore = 0;
 	
@@ -1747,7 +1545,6 @@
         
 	}
     
-    //[self loadMovies];
    
     [self getMoviesFromUserDefaultsOnSuccess:^{
         self.isFirstRound = 1;
@@ -1766,24 +1563,9 @@
     
         
     
-    //self.moviesToUseInView = [[NSMutableArray alloc] init ];
-     //NSLog(@"MOVIES USER DEFAULTS: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"moviesToLoadOnLaunch"] );
-   // [self loadMoviesFromDefaults];
-    
-
     
      
-     
 
-}
-
-
-
-- (void)viewDidAppear:(BOOL)animated{
-//adultID - 39573
-//iron man - 1726
-     
-    
 }
 
 
@@ -1791,13 +1573,6 @@
 - (void)viewDidUnload
 {
     [self setBackButton:nil];
-    [self setImageFieldA:nil];
-    [self setImageFieldB:nil];
-    [self setImageFieldB:nil];
-    [self setImageFieldC:nil];
-    [self setImageFieldD:nil];
-    [self setImageFieldE:nil];
-    [self setImageFieldF:nil];
     [self setBackgroundImage:nil];
     [self setImageAButton:nil];
     [self setImageBButton:nil];
@@ -1807,14 +1582,8 @@
     [self setImageFButton:nil];
     [self setTaglineTextbox:nil];
     [self setScoreLabel:nil];
-    [self setLoadingLabelTest:nil];
-    [self setRoundNumberLabelTest:nil];
-    [self setResultCommentTest:nil];
     [self setActivity:nil];
-    [self setCorrectLabel:nil];
     [self setQuickScoreShow:nil];
-   // [self setPauseMenuV:nil];
-    [self setStreakReductionLabel:nil];
     [self setLevelButton:nil];
     [self setLevelLabel:nil];
     [self setQuickScoreShow:nil];

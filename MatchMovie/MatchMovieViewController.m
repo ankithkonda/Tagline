@@ -7,8 +7,6 @@
 //
 //
 //
-//self.facebook = [(MatchMovieAppDelegate *)[[UIApplication sharedApplication] delegate] facebook];
-//self.facebook.sessionDelegate = self;
 
 #import "MatchMovieViewController.h"
 #import "UIImageView+AFNetworking.h"
@@ -110,29 +108,8 @@
 - (void)viewDidLoad
 {
     
-    //[self animateSplash];
     [super viewDidLoad];
     
-    
-   
-    
-   /* 
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"movies"] == nil) {
-        NSLog(@"YES");
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"allmovies" ofType:@"json"];
-        
-        //création d'un string avec le contenu du JSON
-        NSString *myJSON = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];   
-        
-        NSString *fixA = [myJSON stringByReplacingOccurrencesOfString:@"/" withString:@" "]; 
-        
-        NSString *finalJSONString = [fixA stringByReplacingOccurrencesOfString:@"\\" withString:@" "]; 
-        
-        
-        NSArray *movies = [finalJSONString JSONValue];
-        [[NSUserDefaults standardUserDefaults] setObject:movies forKey:@"movies"];
-    }
-    */
     
     
     
@@ -143,8 +120,6 @@
   
     
     
-    NSLog(@"VIEWDIDLOAD!!!");
-    
 }
 
 
@@ -152,8 +127,6 @@
 
 
     [self startEverything];
-    
-    NSLog(@"VIEWDIDAPPEAR!!!");
 
 
 }
@@ -171,8 +144,6 @@
     
    
     
-    //NSMutableDictionary *scoreParams = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"20", @"score", nil];
-    //[fb requestWithGraphPath:@"{MY USER ID}/scores" andParams:scoreParams andHttpMethod:@"POST" andDelegate:self];
     
 	if ([GameCenterManager isGameCenterAvailable]) {
 		
@@ -240,7 +211,6 @@
         [self.startGameButton setEnabled:YES];
         [self.startGameButton setBackgroundColor:nil];
 
-        //[self.matchMovieTaglineLabel setText:@""];
         [self loadTagline];
         [reach stopNotifier];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -256,7 +226,6 @@
             [alertReach show];
          
         
-        NSLog(@"ERMAGUADH!!");
         UIColor *buttonDisabledColor = [[UIColor alloc] initWithRed:42 green:42 blue:42 alpha:1];
 
         [self.startGameButton setEnabled:NO];

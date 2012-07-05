@@ -32,7 +32,6 @@
             return;
         }
         
-        //NSLog(@"CLOSELY LOOK AT SIMILARS: %@", similars);
         
         for (NSDictionary *movie in similars) {
             
@@ -47,19 +46,8 @@
                 }
                 
             }
-            /*
-            if ([movie objectForKey:@"vote_count"] == nil || [movie objectForKey:@"poster_path"] == nil) {
-                NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie ERROR WITH GETTING SIMILAR MOVIES, vote count or poster than are null" code:40 userInfo:nil];
-                failure(myInternalError);
-                return;
-            }
             
-            */
-            //NSLog(@"BLUR4");
-            
-            //NSLog(@"MOVIES TO LOOK AT CLOSELY: %@", movie);
             if([[movie objectForKey:@"vote_count"] intValue] > 1){
-                //(@"BLUR5");
                 [similarsToPrune addObject:[movie objectForKey:@"poster_path"]];
      
             }
@@ -88,7 +76,6 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        
-        NSLog(@"ERROR AT SimilarMovies.m");
         failure(error);
         
     }];

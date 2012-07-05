@@ -60,7 +60,7 @@
     [commentsArray addObject:@"You need to start watching more movies?"];
     [commentsArray addObject:@"I knew you were not smart enough to get that right"];
     [commentsArray addObject:@"Even my cat is smart enough for this!"];
-    [commentsArray addObject:@"Oh... do you hear that? It's the sound of you getting it wrong"];
+    [commentsArray addObject:@"You were the chosen one! :("];
     [commentsArray addObject:@"No offence, but you're really bad at this"];
 
 

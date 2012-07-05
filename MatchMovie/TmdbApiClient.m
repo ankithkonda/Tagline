@@ -55,12 +55,10 @@ static NSString * const tmdbBaseURLString = @"http://api.themoviedb.org/";
 {
     
     NSString *apiPath = [NSString stringWithFormat:@"3/movie/%@/similar_movies?api_key=%@", movieID, TMDB_API_KEY];
-    NSLog(@"%@",apiPath);
     
     
     [self getPath:apiPath parameters:nil success:success failure:failure];
     
-   // NSLog(@"getSimilarMovie!");
     
     
 }
@@ -73,13 +71,12 @@ static NSString * const tmdbBaseURLString = @"http://api.themoviedb.org/";
     NSString *apiPath = [NSString stringWithFormat:@"3/movie/%@?api_key=%@", movieID, TMDB_API_KEY];
     [self getPath:apiPath parameters:nil success:success failure:failure];
     
-    //NSLog(@"getMovie!");
     
     
 }
 
 
-//http://api.themoviedb.org/3/search/movie?api_key=302be0711f8a7ba1e5851b08f1d3b23e&query=b+2011&page=1&include_adult=false&language=en
+
 
 - (void)getMoviesByQueryAtYear:(NSString *)year
               containingLetter:(NSString *)firstLetter
@@ -108,7 +105,6 @@ static NSString * const tmdbBaseURLString = @"http://api.themoviedb.org/";
     
     NSString *apiPath = [NSString stringWithFormat:@"3/genre/%@/movies?api_key=%@&page=%@&language=%@", genre, TMDB_API_KEY, pageNumber, languageCode];
     
-    NSLog(@"apiPath: %@", apiPath);
     [self getPath:apiPath parameters:nil success:success failure:failure];
 
 

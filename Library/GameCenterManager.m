@@ -109,7 +109,7 @@
 	}
 	else
 	{
-		NSLog(@"Missed Method");
+		//NSLog(@"Missed Method");
 	}
 }
 

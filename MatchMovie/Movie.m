@@ -6,81 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-/*
- 
- RAND MOVIE: {
- adult = 0;
- "backdrop_path" = "/ZQixhAZx6fH1VNafFXsqa1B8QI.jpg";
- "belongs_to_collection" =     {
- "backdrop_path" = "/xCbb3hIID1AnEOBxPzsnBXG3n2h.jpg";
- id = 86311;
- name = "The Avengers Collection";
- "poster_path" = "/hiLkVTP34V24JtzOQ22r7Uu8eMc.jpg";
- };
- budget = 140000000;
- genres =     (
- {
- id = 28;
- name = Action;
- },
- {
- id = 12;
- name = Adventure;
- },
- {
- id = 878;
- name = "Science Fiction";
- },
- {
- id = 53;
- name = Thriller;
- }
- );
- homepage = "http://www.ironmanmovie.com/";
- id = 1726;
- "imdb_id" = tt0371746;
- "original_title" = "Iron Man";
- overview = "After escaping from kidnappers using makeshift power armor, an ultrarich inventor and weapons maker turns his creation into a force for good by using it to fight crime. But his skills are stretched to the limit when he must face the evil Iron Monger.";
- popularity = "24803.92";
- "poster_path" = "/848chlIWVT41VtAAgyh9bWymAYb.jpg";
- "production_companies" =     (
- {
- id = 4;
- name = "Paramount Pictures";
- },
- {
- id = 325;
- name = "Marvel Enterprises";
- },
- {
- id = 420;
- name = "Marvel Studios";
- }
- );
- "production_countries" =     (
- {
- "iso_3166_1" = US;
- name = "United States of America";
- }
- );
- "release_date" = "2008-05-02";
- revenue = 585174222;
- runtime = 126;
- "spoken_languages" =     (
- {
- "iso_639_1" = en;
- name = English;
- }
- );
- tagline = "Heroes aren't born. They're built.";
- title = "Iron Man";
- "vote_average" = "8.4";
- "vote_count" = 93;
- }
- 
- 
- */
-
 #import "Movie.h"
 
 
@@ -124,7 +49,6 @@
                 
                 
                 
-                //NSLog(@"RESPONSE AT movie.m: %@", responseObject);
                 
                 if ([responseObject objectForKey:@"results"] == (id)[NSNull null] || [[responseObject objectForKey:@"results"] count] == 0 ) {
                     NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie RESPONSE FOR GET MOVIE BY QUERY IS EITHER NULL OR IT RETURNED AN EMPTY RESPONSE" code:40 userInfo:nil];
@@ -161,7 +85,6 @@
                     return;
                 }
                 
-                NSLog(@"~~~~~~~~~~~~> %d", [moviesToChoose count]);
                
                 int movieToChooseIndex = arc4random() % [moviesToChoose count];
                 
@@ -211,25 +134,15 @@
                     movie.voteCount = [[responseObject objectForKey:@"vote_count"] intValue];
                     movie.isAdult = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"adult"]];
                     
-                    NSLog(@"TAGLINE LENGTH:  %d", [movie.tagLine length]);
-                    /*
-                    if (movie.tagLine == (id)[NSNull null] || [movie.tagLine length] == 0 || movie.movieName == (id)[NSNull null] || [movie.movieName length] == 0 || movie.movieID == (id)[NSNull null] || [movie.movieID length] == 0  || movie.posterPath == (id)[NSNull null] || [movie.posterPath length] == 0  ||[responseObject objectForKey:@"vote_count"] == (id)[NSNull null] || movie.voteCount == 0  || movie.isAdult == (id)[NSNull null] || [movie.isAdult length] == 0  ) {
-                        NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie MOVIE WHICH WAS RETRIEVED AT MOVIE.M IS HAS NULL RESPONSES OR 0 LENGTH (EMPTY) RESPONSES" code:40 userInfo:nil];
-                        failure(myInternalError);
-                        return;
-                    }
-                     */
                     
                     
                     gotMovie(movie);
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"ERROR AT getMovieByID in Movie.m");
                     failure(error);
                 }];
                 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"ERROR AT getMoviesByQuery in Movie.m");
                 failure(error);
             }];
         
@@ -258,7 +171,6 @@
                                      inTheLanguage:languageCode 
         Success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            //NSLog(@"RESPONSE AT movie.m: %@", responseObject);
             
             if ([responseObject objectForKey:@"results"] == (id)[NSNull null] || [[responseObject objectForKey:@"results"] count] == 0 ) {
                 NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie RESPONSE FOR GET MOVIE BY QUERY IS EITHER NULL OR IT RETURNED AN EMPTY RESPONSE" code:40 userInfo:nil];
@@ -292,7 +204,6 @@
                 return;
             }
             
-            NSLog(@"~~~~~~~~~~~~> %d", [moviesToChoose count]);
             
             int movieToChooseIndex = arc4random_uniform([moviesToChoose count]);
             //int movieToChooseIndex = arc4random() % [moviesToChoose count];
@@ -317,12 +228,10 @@
             
             
             if([[NSUserDefaults standardUserDefaults] objectForKey:@"moviesUsed"] != nil) {
-                 NSLog(@"9090090909090909090990");
                 moviesWhichHaveBeenUsed = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"moviesUsed"]];
                 if ([moviesWhichHaveBeenUsed containsObject:randMovieID]) {
                     
                     NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie: MOVIE HAD ALREADY BEEN USED" code:42 userInfo:nil];
-                    NSLog(@"MOVIE ID WHICH HAS BEEN USED: %@", randMovieID);
                     failure(myInternalError);
                     return;
                 }else {
@@ -340,12 +249,11 @@
                 [[NSUserDefaults standardUserDefaults] setObject:movieWhichWasNowChosen forKey:@"moviesUsed"];
                 
             }
-            NSLog(@"101010101010101010101010101");
             
             [[TmdbApiClient sharedClient] getMovieByID:randMovieID Success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
                 
-                NSLog(@"_______: %@", [[Genre sharedClient] getGenreOfMovieID:[responseObject objectForKey:@"id"]]);
+                
                 
                 
                 Movie *movie = [[Movie alloc] init];
@@ -358,20 +266,10 @@
                 movie.genre = [[Genre sharedClient] getGenreOfMovieID:[responseObject objectForKey:@"id"]];
                 movie.genreID = [[Genre sharedClient] getGenreNameFromID:[[Genre sharedClient] getGenreOfMovieID:[responseObject objectForKey:@"id"]]];
                 
-                NSLog(@"TAGLINE LENGTH:  %d", [movie.tagLine length]);
-                /*
-                 if (movie.tagLine == (id)[NSNull null] || [movie.tagLine length] == 0 || movie.movieName == (id)[NSNull null] || [movie.movieName length] == 0 || movie.movieID == (id)[NSNull null] || [movie.movieID length] == 0  || movie.posterPath == (id)[NSNull null] || [movie.posterPath length] == 0  ||[responseObject objectForKey:@"vote_count"] == (id)[NSNull null] || movie.voteCount == 0  || movie.isAdult == (id)[NSNull null] || [movie.isAdult length] == 0  ) {
-                 NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie MOVIE WHICH WAS RETRIEVED AT MOVIE.M IS HAS NULL RESPONSES OR 0 LENGTH (EMPTY) RESPONSES" code:40 userInfo:nil];
-                 failure(myInternalError);
-                 return;
-                 }
-                 */
-                
-                NSLog(@"MOVIE **** : %@", movie.movieName);
+               
                 
                 gotMovie(movie);
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"ERROR AT getMovieByID in Movie.m");
                 failure(error);
             }];
                                                
@@ -380,7 +278,6 @@
     
                                                
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"ERROR AT getMoviesByQuery in Movie.m");
         failure(error);
     }];
     
@@ -398,12 +295,10 @@
     
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"moviesUsed"] != nil) {
-        NSLog(@"9090090909090909090990");
         moviesWhichHaveBeenUsed = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"moviesUsed"]];
         if ([moviesWhichHaveBeenUsed containsObject:movieID]) {
             
             NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie: MOVIE HAD ALREADY BEEN USED" code:42 userInfo:nil];
-            NSLog(@"MOVIE ID WHICH HAS BEEN USED: %@", movieID);
             failure(myInternalError);
             return;
         }else {
@@ -435,20 +330,11 @@
         movie.genreID = [[Genre sharedClient] getGenreOfMovieID:[responseObject objectForKey:@"id"]];
         movie.genre = [[Genre sharedClient] getGenreNameFromID:[[Genre sharedClient] getGenreOfMovieID:[responseObject objectForKey:@"id"]]];
         
-        NSLog(@"TAGLINE LENGTH:  %d", [movie.tagLine length]);
        
-        /*
-         if (movie.tagLine == (id)[NSNull null] || [movie.tagLine length] == 0 || movie.movieName == (id)[NSNull null] || [movie.movieName length] == 0 || movie.movieID == (id)[NSNull null] || [movie.movieID length] == 0  || movie.posterPath == (id)[NSNull null] || [movie.posterPath length] == 0  ||[responseObject objectForKey:@"vote_count"] == (id)[NSNull null] || movie.voteCount == 0  || movie.isAdult == (id)[NSNull null] || [movie.isAdult length] == 0  ) {
-         NSError *myInternalError = [[NSError alloc] initWithDomain:@"com.ankithkonda.matchmovie MOVIE WHICH WAS RETRIEVED AT MOVIE.M IS HAS NULL RESPONSES OR 0 LENGTH (EMPTY) RESPONSES" code:40 userInfo:nil];
-         failure(myInternalError);
-         return;
-         }
-         */
         
         
         gotMovie(movie);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"ERROR AT getMovieByID in Movie.m");
         failure(error);
     }];
 

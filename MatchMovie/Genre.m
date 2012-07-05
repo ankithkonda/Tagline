@@ -118,7 +118,6 @@
     for (NSDictionary *movie in moviesInApp) {
         
         if ([[movie objectForKey:@"tmdb_id"] intValue] == [movieID intValue]) {
-            NSLog(@"GENRE ID FROM GENRE.m : %@", [movie objectForKey:@"genre_id"]);
             return [movie objectForKey:@"genre_id"];
         }
         

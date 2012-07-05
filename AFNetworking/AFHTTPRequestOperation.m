@@ -101,7 +101,7 @@ NSString * AFCreateIncompleteDownloadDirectoryPath(void) {
         NSError *error = nil;
         NSFileManager *fileMan = [[NSFileManager alloc] init];
         if(![fileMan createDirectoryAtPath:incompleteDownloadPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"Failed to create incomplete downloads directory at %@", incompleteDownloadPath);
+            //NSLog(@"Failed to create incomplete downloads directory at %@", incompleteDownloadPath);
         }
         [fileMan release];
     });
