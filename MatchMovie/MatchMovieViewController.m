@@ -18,7 +18,6 @@
 @interface MatchMovieViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *playerNameLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *playerProfilePicture;
 
 
 @end
@@ -27,7 +26,6 @@
 
 
 @synthesize playerNameLabel;
-@synthesize playerProfilePicture;
 @synthesize startGameButton;
 @synthesize gameCenterManager;
 @synthesize currentLeaderBoard;
@@ -107,7 +105,7 @@
 
 - (void)viewDidLoad
 {
-    
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     [super viewDidLoad];
     
     
@@ -262,7 +260,6 @@
 {
   
     [self setPlayerNameLabel:nil];
-    [self setPlayerProfilePicture:nil];
     [self setMatchMovieTaglineLabel:nil];
     [self setStartGameButton:nil];
     [self setActivityIndicator:nil];

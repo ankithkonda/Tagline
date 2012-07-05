@@ -11,6 +11,7 @@
 #import "AppSpecificValues.h"
 #import "GameCenterManager.h"
 #import "Reachability.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 
 @class GameCenterManager;

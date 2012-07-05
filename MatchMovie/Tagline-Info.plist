@@ -14,14 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>iconH.png</string>
-				<string>iconG.png</string>
 				<string>Default@2x.png</string>
 				<string>Default.png</string>
-				<string>iconFinal.png</string>
-				<string>iconFinalx2.png</string>
-				<string>iconFinalA.png</string>
-				<string>iconTestE.png</string>
 				<string>icon114.png</string>
 				<string>icon57.png</string>
 			</array>
