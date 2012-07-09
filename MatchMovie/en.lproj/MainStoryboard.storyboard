@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="KvR-bm-aBJ">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -392,14 +391,14 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="&quot; Match Movie is an iPhone / iPod Touch / iPad game where by the player simply has to match a movie poster to a given tagline &quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" minimumFontSize="10" id="E8h-po-Na0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="&quot; Tagline is an iPhone / iPod Touch / iPad game where by the player simply has to match a movie poster to a given tagline &quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" minimumFontSize="10" id="E8h-po-Na0">
                                         <rect key="frame" x="20" y="312" width="280" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="@matchmovie" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" minimumFontSize="10" id="TEr-u7-3kj">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="@tagline" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" minimumFontSize="10" id="TEr-u7-3kj">
                                         <rect key="frame" x="69" y="103" width="169" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="19"/>
@@ -422,7 +421,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="How                         works" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="zTQ-0T-p82">
-                                        <rect key="frame" x="61" y="113" width="218" height="21"/>
+                                        <rect key="frame" x="63" y="113" width="218" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -444,7 +443,7 @@
                                             <action selector="backToMainPage:" destination="UJn-Yw-BQe" eventType="touchUpInside" id="KJs-YR-VSA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About Match Movie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tvn-Ei-NDg">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About Tagline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tvn-Ei-NDg">
                                         <rect key="frame" x="10" y="5" width="299" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -511,7 +510,6 @@
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="commentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="correctLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="hintButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageAButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageBButton" candidateClass="UIButton"/>
@@ -519,20 +517,10 @@
                 <relationship kind="outlet" name="imageDButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageEButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="imageFButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageFieldA" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imageFieldB" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imageFieldC" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imageFieldD" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imageFieldE" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="imageFieldF" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="levelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="levelLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loadingLabelTest" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="quickScoreShow" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resultCommentTest" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="roundNumberLabelTest" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="streakReductionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="taglineTextbox" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -542,7 +530,6 @@
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="matchMovieTaglineLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerProfilePicture" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="startGameButton" candidateClass="UIButton"/>
             </relationships>
         </class>
